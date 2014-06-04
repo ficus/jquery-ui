@@ -20,8 +20,8 @@ test( "input's value determines starting date", function() {
 });
 
 asyncTest( "baseStructure", function() {
-	expect( 42 );
-	var header, title, table, thead, week, panel, inl, child,
+	expect( 29 );
+	var header, title, table, thead, week, panel, child,
 		inp = TestHelpers.datepicker.initNewInput(),
 		dp = inp.datepicker( "widget" ).find( ".ui-datepicker" );
 
@@ -163,55 +163,8 @@ asyncTest( "baseStructure", function() {
 			ok( child.is( "div.ui-datepicker-row-break" ), "Structure multi [2,2] - row break" );
 			*/
 			inp.datepicker( "close" ).datepicker( "destroy" );
-			step6();
+			start();
 		});
-	}
-
-	function step6() {
-		// Inline
-		inl = TestHelpers.datepicker.init( "#inline" );
-		dp = inl.children();
-
-		ok( dp.is( ".ui-datepicker-inline" ), "Structure inline - main div" );
-		ok( !dp.is( ".ui-datepicker-rtl" ), "Structure inline - not right-to-left" );
-		ok( !dp.is( ".ui-datepicker-multi" ), "Structure inline - not multi-month" );
-		equal( dp.children().length, 3, "Structure inline - child count (header, calendar, buttonpane)" );
-
-		header = dp.children( ":first" );
-		ok( header.is( "div.ui-datepicker-header" ), "Structure inline - header division" );
-		equal( header.children().length, 3, "Structure inline - header child count" );
-
-		table = dp.children( ":eq(1)" );
-		ok( table.is( "table.ui-datepicker-calendar" ), "Structure inline - month table" );
-		ok( table.children( ":first" ).is( "thead" ), "Structure inline - month table thead" );
-		ok( table.children( ":eq(1)" ).is( "tbody" ), "Structure inline - month table body" );
-
-		inl.datepicker( "destroy" );
-
-		step7();
-	}
-
-	function step7() {
-		// Inline multi-month
-		inl = TestHelpers.datepicker.init( "#inline", { numberOfMonths: 2 } );
-		dp = inl.datepicker( "widget" ).find( ".ui-datepicker" );
-
-		ok( dp.is( ".ui-datepicker-inline" ) && dp.is( ".ui-datepicker-multi" ), "Structure inline multi - main div" );
-		equal( dp.children().length, 4, "Structure inline multi - child count" );
-
-		child = dp.children( ":first" );
-		// TODO: Implement ui-datepicker-group-first class name
-		// ok( child.is( "div.ui-datepicker-group" ) && child.is( "div.ui-datepicker-group-first" ), "Structure inline multi - first month division" );
-
-		child = dp.children( ":eq(1)" );
-		// TODO: Implement ui-datepicker-group-last class name
-		// ok( child.is( "div.ui-datepicker-group" ) && child.is( "div.ui-datepicker-group-last" ), "Structure inline multi - second month division" );
-
-		child = dp.children( ":eq(2)" );
-		ok( child.is( "div.ui-datepicker-row-break" ), "Structure inline multi - row break" );
-
-		inl.datepicker( "destroy" );
-		start();
 	}
 
 	step1();
