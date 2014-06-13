@@ -20,13 +20,15 @@ test( "input's value determines starting date", function() {
 });
 
 asyncTest( "baseStructure", function() {
-	expect( 25 );
+	expect( 23 );
+
 	var header, title, table, thead, week, child,
 		inp = TestHelpers.datepicker.initNewInput(),
 		dp = inp.datepicker( "widget" );
 
 	function step1() {
 		inp.focus();
+
 		setTimeout(function() {
 			ok( dp.is( ":visible" ), "Structure - datepicker visible" );
 			ok( !dp.is( ".ui-calendar-rtl" ), "Structure - not right-to-left" );
@@ -58,9 +60,6 @@ asyncTest( "baseStructure", function() {
 			week = table.children( ":eq(1)" ).children( ":first" );
 			ok( week.is( "tr" ), "Structure - month table week row" );
 			equal( week.children().length, 7, "Structure - week child count" );
-			// TODO: Preserve these class names or let the user use :first-child and :last-child?
-			ok( week.children( ":first" ).is( "td.ui-calendar-week-end" ), "Structure - month table first day cell" );
-			ok( week.children( ":last" ).is( "td.ui-calendar-week-end" ), "Structure - month table second day cell" );
 
 			inp.datepicker( "close" ).datepicker( "destroy" );
 			step2();
@@ -75,14 +74,6 @@ asyncTest( "baseStructure", function() {
 		setTimeout(function() {
 			ok( dp.is( ".ui-calendar-multi" ), "Structure multi [2] - multi-month" );
 			equal( dp.children().length, 4, "Structure multi [2] - child count" );
-
-			// TODO: Implement ui-datepicker-group-first class name
-//			child = dp.children( ":first" );
-//			ok( child.is( "div.ui-calendar-group" ) && child.is( "div.ui-calendar-group-first" ), "Structure multi [2] - first month division" );
-
-			// TODO: Implement ui-datepicker-group-last class name
-//			child = dp.children( ":eq(1)" );
-//			ok( child.is( "div.ui-calendar-group" ) && child.is( "div.ui-calendar-group-last" ), "Structure multi [2] - second month division" );
 
 			child = dp.children( ":eq(2)" );
 			ok( child.is( "div.ui-calendar-row-break" ), "Structure multi [2] - row break" );
