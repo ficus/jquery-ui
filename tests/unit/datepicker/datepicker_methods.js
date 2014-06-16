@@ -40,12 +40,12 @@ test( "widget", function() {
 });
 
 test( "close", function() {
-	// ToDo implement this
+	// TODO: implement this
 	expect( 0 );
 });
 
 test( "open", function() {
-	// ToDo implement this
+	// TODO: implement this
 	expect( 0 );
 });
 
