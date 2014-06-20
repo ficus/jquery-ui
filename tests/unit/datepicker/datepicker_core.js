@@ -20,9 +20,9 @@ test( "input's value determines starting date", function() {
 });
 
 asyncTest( "baseStructure", function() {
-	expect( 27 );
+	expect( 15 );
 
-	var header, title, table, thead, week, child, buttonpane,
+	var header, title, table, child, buttonpane,
 		inp = TestHelpers.datepicker.initNewInput(),
 		dp = inp.datepicker( "widget" );
 
@@ -31,35 +31,19 @@ asyncTest( "baseStructure", function() {
 
 		setTimeout(function() {
 			ok( dp.is( ":visible" ), "Structure - datepicker visible" );
-			ok( !dp.is( ".ui-calendar-rtl" ), "Structure - not right-to-left" );
-			ok( !dp.is( ".ui-calendar-multi" ), "Structure - not multi-month" );
 			equal( dp.children().length, 2, "Structure - child count (header, calendar)" );
 
 			header = dp.children( ":first" );
 			ok( header.is( "div.ui-calendar-header" ), "Structure - header division" );
 			equal( header.children().length, 3, "Structure - header child count" );
-			ok( header.children( ":first" ).is( ".ui-calendar-prev" ) && header.children( ":first" ).html() !== "", "Structure - prev link" );
-			ok( header.children( ":eq(1)" ).is( ".ui-calendar-next" ) && header.children( ":eq(1)" ).html() !== "", "Structure - next link" );
 
 			title = header.children( ":last" ).children( ":first" );
-			ok( title.is( "div.ui-calendar-title" ) && title.html() !== "", "Structure - title division" );
 			equal( title.children().length, 2, "Structure - title child count" );
-			ok( title.children( ":first" ).is( "span.ui-calendar-month" ) && title.children( ":first" ).text() !== "", "Structure - month text" );
-			ok( title.children( ":last" ).is( "span.ui-calendar-year" ) && title.children( ":last" ).text() !== "", "Structure - year text" );
 
 			table = dp.children( ":eq(1)" );
 			ok( table.is( "table.ui-calendar-calendar" ), "Structure - month table" );
 			ok( table.children( ":first" ).is( "thead" ), "Structure - month table thead" );
-
-			thead = table.children( ":first" ).children( ":first" );
-			ok( thead.is( "tr" ), "Structure - month table title row" );
-			equal( thead.find( "th" ).length, 7, "Structure - month table title cells" );
 			ok( table.children( ":eq(1)" ).is( "tbody" ), "Structure - month table body" );
-			ok( table.children( ":eq(1)" ).children( "tr" ).length >= 4, "Structure - month table week count" );
-
-			week = table.children( ":eq(1)" ).children( ":first" );
-			ok( week.is( "tr" ), "Structure - month table week row" );
-			equal( week.children().length, 7, "Structure - week child count" );
 
 			inp.datepicker( "close" );
 			step2();
