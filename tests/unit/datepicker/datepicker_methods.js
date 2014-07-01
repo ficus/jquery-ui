@@ -4,6 +4,7 @@ module( "datepicker: methods" );
 
 test( "destroy", function() {
 	expect( 6 );
+
 	var input = $( "#datepicker" ).datepicker();
 
 	ok( input.datepicker( "instance" ), "instance created" );
@@ -17,6 +18,7 @@ test( "destroy", function() {
 
 test( "enable / disable", function() {
 	expect( 6 );
+
 	var inp = TestHelpers.datepicker.init( "#datepicker" ),
 		dp = inp.datepicker( "widget" );
 
@@ -34,6 +36,7 @@ test( "enable / disable", function() {
 
 test( "widget", function() {
 	expect( 1 );
+
 	var actual = $( "#datepicker" ).datepicker().datepicker( "widget" );
 	deepEqual( $( "body > .ui-front" )[ 0 ],  actual[ 0 ] );
 	actual.remove();
